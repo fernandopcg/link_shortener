@@ -22,7 +22,6 @@ public class UrlController {
 	private UrlService urlService;
 
 	@RequestMapping(method=RequestMethod.POST, value="/")
-	//@ResponseStatus(HttpStatus.CREATED)
 	public Url createUrl(@RequestBody String requestBody, @RequestParam("originalUrl") String originalUrl, @RequestParam("customUrl") String customUrl, HttpServletResponse response) {
 		response.setStatus(HttpServletResponse.SC_CREATED);
 		System.out.println("Received request:" + requestBody);
@@ -44,7 +43,6 @@ public class UrlController {
 			return null;
 		}
 	
-		
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value = "/")
@@ -60,18 +58,10 @@ public class UrlController {
 		return urlService.getUrlByShortUri(shortUrl);
 	}
 	
-	/*@RequestMapping(method=RequestMethod.PUT, value="/link/{shortUrl}")
-	@ResponseStatus(HttpStatus.OK)
-	public void updateLink(@PathVariable String shortUrl, @RequestBody String originalUrl) {
-		urlService.updateUrlOriginalUrl(shortUrl, originalUrl);
-	}*/
-	
 	@RequestMapping(method=RequestMethod.DELETE, value="/{shortUrl}")
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public void deleteLink(@PathVariable String shortUrl) {
 		urlService.deleteUrlByShortUrl(shortUrl);
 	}
-	
-
-	
+		
 }
