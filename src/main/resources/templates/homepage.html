@@ -1,0 +1,206 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Fernando's Link Shortener</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script type="text/javascript" src="https://az765212.vo.msecnd.net/cdn/oslo/1.0/js/jquery.min.js"></script>
+
+    <!-- Oslo Visual Framework v1.0.0 -->
+    <link rel="stylesheet" href="https://az765212.vo.msecnd.net/cdn/oslo/1.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://az765212.vo.msecnd.net/cdn/oslo/1.0/css/material.min.css"/>
+    <link rel="stylesheet" href="https://az765212.vo.msecnd.net/cdn/oslo/1.0/css/material-fullpalette.min.css"/>
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    
+    
+</head>
+<body>
+    
+    <header class="navbar navbar-static-top btn-material-red" id="top" role="banner" style="margin-bottom:0px">
+    <div class="container">
+        <div class="navbar-header">
+		
+          <span class="navbar-brand">Fernando's Link Shortener</span> 
+        </div>
+      </div>
+      </header>
+    
+    
+<div class="container">
+    <h1>Link Shortener <small>by Fernando</small></h1>
+    
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="input-group">
+                <input id="url-input" type="text" placeholder="http://google.es/" class="form-control"></input>
+                <input id="custom-short-url" type="text" placeholder="Custom short URL here" class="form-control"></input>
+                <button id="shorten-button" type="button" class="btn btn-primary btn-lg btn-material-red">Shorten this URL</button>
+            </div>
+        </div>
+    </div>
+
+
+    <br/><br/><br/><br/>
+    <br/><br/><br/><br/>
+
+<a class="btn btn-primary btn-material-red" role="button" data-toggle="collapse" href="#developerAPIdocs" aria-expanded="false" aria-controls="collapseExample">
+  Developer API documentation
+</a>
+
+<div class="collapse" id="developerAPIdocs">
+  <div class="well">
+   
+	  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+	    <div class="panel panel-default">
+	      <div class="panel-heading" role="tab" id="headingOne">
+	        <h4 class="panel-title">
+	          <a role="button" data-toggle="collapse" data-parent="#accordion" href="#newShortURL" aria-expanded="true" aria-controls="collapseOne">
+	            Create a new short URL
+	          </a>
+	        </h4>
+	      </div>
+	      <div id="newShortURL" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+	        <div class="panel-body">
+	          Method: POST<br/>
+	          Address: &lt;hostname&gt;/urls/<br/>
+	          Content-type: application/json<br/>
+	          Data: http://some-very.long/url/here/<br/>
+	        </div>
+	      </div>
+	    </div>
+	    <div class="panel panel-default">
+	      <div class="panel-heading" role="tab" id="headingTwo">
+	        <h4 class="panel-title">
+	          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#deleteShortURL" aria-expanded="false" aria-controls="collapseTwo">
+	            Delete existing short URL
+	          </a>
+	        </h4>
+	      </div>
+	      <div id="deleteShortURL" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+	        <div class="panel-body">
+	          Method: DELETE<br/>
+	          Address: &lt;hostname&gt;/urls/&lt;shortURI&gt;<br/>
+	          Content type: application/json<br/>
+	        </div>
+	      </div>
+	    </div>
+	    <div class="panel panel-default">
+	      <div class="panel-heading" role="tab" id="headingThree">
+	        <h4 class="panel-title">
+	          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#getDetailsfromShortURL" aria-expanded="false" aria-controls="collapseThree">
+	            Fetch details of a short URI
+	          </a>
+	        </h4>
+	      </div>
+	      <div id="getDetailsfromShortURL" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+	        <div class="panel-body">
+	          Method: GET<br/>
+	          Address: &lt;hostname&gt;/urls/&lt;shortURI&gt;<br/>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+	  
+	  
+</div>
+</div>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+
+</div>
+
+<!-- Modal shown after clicking -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Your shortlink has been created</h4>
+      </div>
+
+      <div class="modal-body">
+      	<h5 class="modal-title" id="myModalLabel">Your original URL</h5>
+      	<small><blockquote> <a href="" target="_blank" id="original-url-placeholder-link"><p id="original-url-placeholder"></p></a> </blockquote></small>
+      	<h5 class="modal-title" id="myModalLabel">is now reachable at:</h5>
+        <blockquote> <a href="" target="_blank" id="short-url-placeholder-link"><p id="short-url-placeholder"></p></a> </blockquote>
+        <small>URL first generated on <span id="short-url-creation-date"></span></small>
+        
+	        
+	    <button type="button" class="btn btn-primary btn-xs" id="copy-button" data-clipboard-target="short-url-placeholder">Copy to clipboard</button>
+	    <script src="js/ZeroClipboard.js"></script>
+	    <script>
+			 // main.js
+			    var client = new ZeroClipboard( document.getElementById("copy-button") );
+			
+			    client.on( "ready", function( readyEvent ) {
+			      // alert( "ZeroClipboard SWF is ready!" );
+			
+			      client.on( "aftercopy", function( event ) {
+			        // `this` === `client`
+			        // `event.target` === the element that was clicked
+			        //event.target.style.display = "none";
+			    	$("#copy-button").addClass("btn-success");
+			    	$("#copy-button").removeClass("btn-primary");
+			      } );
+			    } );
+	    </script>
+        
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- Modal shown after errors happen -->
+<div class="modal fade" id="myErrorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Your shortlink has not been created</h4>
+      </div>
+
+      <div class="modal-body">
+      	<h5 class="modal-title" id="myModalLabel">Your original URL could not be shortened to the desired value:</h5>
+	        
+        
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<script src="js/AjaxCall.js"></script>
+
+
+<!-- Add Javascript just before the closing of the <body> tag -->
+<script src="https://az765212.vo.msecnd.net/cdn/oslo/1.0/js/bootstrap.min.js"></script>
+<script src="https://az765212.vo.msecnd.net/cdn/oslo/1.0/js/material.min.js"></script>
+
+</body>
+</html>
